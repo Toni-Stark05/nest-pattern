@@ -6,7 +6,14 @@ async function start() {
   const PROCESS = process.pid
   const app = await NestFactory.create(AppModule)
   await app.listen(PORT, () => {
-    console.log('\x1b[32m', `[APP] ${PROCESS} -`, `App working from port`, '\x1b[33m', `${PORT}!`)
+    console.log(
+      '\x1b[32m',
+      `[APP] ${PROCESS} -`,
+      `App working from port`,
+      '\x1b[33m',
+      `${PORT}!`,
+      '\x1b[0m'
+    )
   })
 }
 start()

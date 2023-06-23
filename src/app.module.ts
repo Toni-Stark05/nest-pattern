@@ -7,7 +7,9 @@ import * as path from 'path'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import appConfig from './config/app.config'
 import { SequelizeModule } from '@nestjs/sequelize'
+import { RedisModule } from './redis/redis.module'
 import postgresConfig from './config/postgres.config'
+import redisConfig from './config/redis.config'
 
 function createEnvPath() {
   let envFilePath = path.resolve(__dirname, '../environment/')
@@ -32,7 +34,7 @@ function createEnvPath() {
     ConfigModule.forRoot({
       envFilePath: createEnvPath(),
       isGlobal: true,
-      load: [appConfig, postgresConfig],
+      load: [appConfig, postgresConfig, redisConfig],
     }),
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
@@ -50,6 +52,7 @@ function createEnvPath() {
         }
       },
     }),
+    RedisModule,
   ],
   controllers: [AppController],
   providers: [AppService],

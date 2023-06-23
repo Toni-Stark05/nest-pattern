@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import appConfig from './config/app.config'
 import { SequelizeModule } from '@nestjs/sequelize'
 import { RedisModule } from './redis/redis.module'
+import { LoggerModule } from './logger/logger.module';
 import postgresConfig from './config/postgres.config'
 import redisConfig from './config/redis.config'
 
@@ -53,6 +54,7 @@ function createEnvPath() {
       },
     }),
     RedisModule,
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
